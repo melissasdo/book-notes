@@ -14,13 +14,54 @@
 
         <div class="books">
             <% if (listOfBooks.length===0) { %>
-                <div class="p-4">
+                <div class="jt-gif p-4">
                     <p class="text-muted">📚 You haven't added any books yet. Start by adding your first
                         one!
                     </p>
 
                     <img src="/assets/images/pulp-fiction-john-travolta.gif" class="rounded-4 p-2"
                         alt="John Travolta Pulp Fiction meme">
+                </div>
+
+                <div>
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                        data-bs-target="#add-book" data-bs-whatever="@fat">Add a new book</button>
+
+                    <div class="modal fade" id="add-book" tabindex="-1" aria-labelledby="add-book-popup"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="add-book-popup">New book</h1>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="mb-3">
+                                            <label for="book-title" class="col-form-label">Title:</label>
+                                            <input type="text" class="form-control" id="book-title">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="message-text" class="col-form-label">Notes:</label>
+                                            <textarea class="form-control" id="message-text"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="rating" class="col-form-label">Your rating:</label>
+                                            <textarea class="form-control" id="rating"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="date-read" class="col-form-label">Date read:</label>
+                                            <textarea class="form-control" id="date-read"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success">Create entry</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <% } else { %>
                     <% for(let book of listOfBooks) {%>
