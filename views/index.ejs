@@ -1,0 +1,41 @@
+<%- include('partials/header.ejs'); -%>
+
+    <nav class="navbar text-bg-success p-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Book Notes</a>
+        </div>
+    </nav>
+
+    <div class="container-fluid text-center">
+        <div class="header p-4">
+            <h1>Good <%= timeOfDay %>
+            </h1>
+        </div>
+
+        <div class="books">
+            <% if (listOfBooks.length===0) { %>
+                <div class="p-4">
+                    <p class="text-muted">📚 You haven't added any books yet. Start by adding your first
+                        one!
+                    </p>
+
+                    <img src="/assets/images/pulp-fiction-john-travolta.gif" class="rounded-4 p-2"
+                        alt="John Travolta Pulp Fiction meme">
+                </div>
+                <% } else { %>
+                    <% for(let book of listOfBooks) {%>
+                        <div class=" row-content">
+                            <p id="title<%=book.id%>">
+                                <%= book.title %>
+                            </p>
+
+                            <p id="dateCell<%= book.id %>" class="date-item">
+                                <%= new Date(book.date_read).toISOString().slice(0, 10) %>
+                            </p>
+                        </div>
+                        <%}%>
+                            <%}%>
+        </div>
+    </div>
+
+    <%- include('partials/footer.ejs'); -%>
