@@ -76,7 +76,22 @@ app.post("/add", async (req, res) => {
 });
 
 // update
-app.post("/edit", async (req, res) => {});
+app.post("/edit", async (req, res) => {
+  const id = req.body.updatedBookId;
+  const updatedBookTitle = req.body.updatedBookTitle;
+
+  try {
+    await db.query("UPDATE books SET title = $1 WHERE id = $2", [
+      updatedBookTitle,
+      id,
+    ]);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Error editing item");
+  }
+
+  res.redirect("/");
+});
 
 // delete
 app.post("/delete", async (req, res) => {});

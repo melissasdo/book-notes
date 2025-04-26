@@ -32,7 +32,6 @@
                                         <th scope="col">Your rating</th>
                                         <th scope="col">Your thoughts</th>
                                         <th scope="col">Date finished</th>
-                                        <th scope="col">Edit entry</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-group-divider">
@@ -41,8 +40,33 @@
                                             <th scope="row">
                                                 <%= book.id %>
                                             </th>
-                                            <td>
-                                                <%= book.title %>
+                                            <td onmouseover="showEditButton('<%=book.id%>')"
+                                                onmouseout="hideEditButton('<%=book.id%>')">
+                                                <div>
+                                                    <form class="justify-content-center d-flex gap-4" action="/edit"
+                                                        method="post">
+                                                        <p id="title<%= book.id %>" class="mb-0">
+                                                            <%= book.title %>
+                                                        </p>
+                                                        <input class="form-control" type="hidden" name="updatedBookId"
+                                                            value="<%= book.id %>">
+                                                        <input class="form-control" id="input<%= book.id %>" type="text"
+                                                            name="updatedBookTitle" value="<%= book.title %>"
+                                                            hidden="true" />
+                                                        <button id="edit<%= book.id %>" class="btn btn-sm p-0"
+                                                            type="button" hidden onclick="handler('<%=book.id%>')">
+                                                            ✏️
+                                                        </button>
+                                                        <button id="done<%= book.id %>" class="btn btn-sm p-0"
+                                                            type="submit" hidden>
+                                                            ✅
+                                                        </button>
+                                                        <button id="cancel<%= book.id %>" class="btn btn-sm p-0"
+                                                            type="button" onclick="cancelEdit('<%=book.id%>')" hidden>
+                                                            ❌
+                                                        </button>
+                                                    </form>
+                                                </div>
                                             </td>
                                             <td>
                                                 <%= book.author %>
@@ -55,9 +79,6 @@
                                             </td>
                                             <td>
                                                 <%= new Date(book.date_read).toISOString().slice(0, 10) %>
-                                            </td>
-                                            <td>
-                                                ✏️
                                             </td>
                                         </tr>
                                         <% } %>
