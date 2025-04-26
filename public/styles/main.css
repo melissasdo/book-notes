@@ -1,7 +1,16 @@
+/* tags */
 body {
-    background-color: rgba(127, 255, 212, 0.431);
+  background-color: rgba(127, 255, 212, 0.431);
 }
 
 h1 {
-    font-size: 30px !important;
+  font-size: 30px !important;
+}
+
+/* classes */
+.date-read {
+  border-style: none;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
 }

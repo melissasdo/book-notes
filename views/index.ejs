@@ -15,18 +15,15 @@
         <div class="books">
             <% if (listOfBooks.length===0) { %>
                 <div class="jt-gif p-4">
-                    <p class="text-muted">📚 You haven't added any books yet. Start by adding your first
+                    <p class="text-muted fst-italic">📚 You haven't added any books yet. Start by adding your first
                         one!
                     </p>
-
                     <img src="/assets/images/pulp-fiction-john-travolta.gif" class="rounded-4 p-2"
                         alt="John Travolta Pulp Fiction meme">
                 </div>
-
                 <div>
                     <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
                         data-bs-target="#add-book" data-bs-whatever="@fat">Add a new book</button>
-
                     <div class="modal fade" id="add-book" tabindex="-1" aria-labelledby="add-book-popup"
                         aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
@@ -36,21 +33,53 @@
                                 </div>
                                 <div class="modal-body">
                                     <form>
-                                        <div class="mb-3">
-                                            <label for="book-title" class="col-form-label">Title:</label>
-                                            <input type="text" class="form-control" id="book-title">
+                                        <div class="d-flex align-items-center mb-4">
+                                            <label for="title" class="me-2 mb-0" style="width: 100px;">Title:</label>
+                                            <input type="text" class="form-control" id="title" name="title">
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="message-text" class="col-form-label">Notes:</label>
+                                        <div class="d-flex align-items-center mb-4">
+                                            <label for="author" class="me-2 mb-0" style="width: 100px;">Author:</label>
+                                            <input type="text" class="form-control" id="author" name="author">
+                                        </div>
+                                        <div class="d-flex align-items-center mb-4">
+                                            <label for="message-text" class="me-2 mb-0" style="width: 100px;">Your
+                                                thoughts:</label>
                                             <textarea class="form-control" id="message-text"></textarea>
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="rating" class="col-form-label">Your rating:</label>
-                                            <textarea class="form-control" id="rating"></textarea>
+                                        <div class="d-flex align-items-center mb-4">
+                                            <label class="me-2 mb-0" style="width: 100px;">Your
+                                                rating:</label>
+                                            <div class="rating-5">
+                                                <input type="radio" class="form-check-input" id="rating-5"
+                                                    name="rating">
+                                                <label for="rating-5" class="me-2 mb-0" style="width: 100px;">5</label>
+                                            </div>
+                                            <div class="rating-4">
+                                                <input type="radio" class="form-check-input" id="rating-4"
+                                                    name="rating">
+                                                <label for="rating-4" class="me-2 mb-0" style="width: 100px;">4</label>
+                                            </div>
+                                            <div class="rating-3">
+                                                <input type="radio" class="form-check-input" id="rating-3"
+                                                    name="rating">
+                                                <label for="rating-3" class="me-2 mb-0" style="width: 100px;">3</label>
+                                            </div>
+                                            <div class="rating-2">
+                                                <input type="radio" class="form-check-input" id="rating-2"
+                                                    name="rating">
+                                                <label for="rating-2" class="me-2 mb-0" style="width: 100px;">2</label>
+                                            </div>
+                                            <div class="rating-1">
+                                                <input type="radio" class="form-check-input" id="rating-1"
+                                                    name="rating">
+                                                <label for="rating-1" class="me-2 mb-0" style="width: 100px;">1</label>
+                                            </div>
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="date-read" class="col-form-label">Date read:</label>
-                                            <textarea class="form-control" id="date-read"></textarea>
+                                        <div class="d-flex align-items-center mb-4">
+                                            <label for="date-read" class="me-2 mb-0" style="width: 100px;">Date
+                                                read:</label>
+                                            <input type="date" class="date-read" id="date-read" max="<%= today %>"
+                                                name="date-read">
                                         </div>
                                     </form>
                                 </div>
@@ -77,6 +106,7 @@
                         <%}%>
                             <%}%>
         </div>
+
     </div>
 
     <%- include('partials/footer.ejs'); -%>

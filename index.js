@@ -32,15 +32,25 @@ function timeOfDay() {
   return "night 🌙";
 }
 
+function currentDay() {
+  const year = String(formatTime(new Date().getFullYear()));
+  const month = String(formatTime(new Date().getMonth() + 1));
+  const day = formatTime(new Date().getDate());
+
+  return `${year}-${month}-${day}`;
+}
+
 // home page = read
 app.get("/", async (req, res) => {
   const greeting = timeOfDay();
+  const day = currentDay();
 
   const result = await db.query("SELECT * FROM books ORDER BY date_read ASC");
 
   res.render("index.ejs", {
     timeOfDay: greeting,
     listOfBooks: result.rows,
+    today: day,
   });
 });
 
