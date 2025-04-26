@@ -14,3 +14,14 @@ h1 {
   font-size: 16px;
   font-weight: 300;
 }
+
+.table {
+  background-color: #e4ffe9 !important;
+}
+
+.table th,
+.table td {
+  background-color: #e4ffe9 !important;
+}
+
+/* ids*/

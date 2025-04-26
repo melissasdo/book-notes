@@ -15,30 +15,58 @@
         <div class="books">
             <% if (listOfBooks.length===0) { %>
                 <div class="jt-gif p-4">
-                    <p class="text-muted fst-italic">📚 You haven't added any books yet. Start by adding your first
-                        one!
+                    <p class="text-muted fst-italic">📚 You haven't added any books yet. Start by adding your first one!
                     </p>
                     <img src="/assets/images/pulp-fiction-john-travolta.gif" class="rounded-4 p-2"
                         alt="John Travolta Pulp Fiction meme">
                 </div>
                 <%- include('partials/form.ejs'); -%>
                     <% } else { %>
-                        <% for(let book of listOfBooks) {%>
-                            <div class="row-content">
-                                <p id="title<%=book.id%>">
-                                    <%= book.title %>
-                                </p>
-
-                                <p id="dateCell<%= book.id %>" class="date-item">
-                                    <%= new Date(book.date_read).toISOString().slice(0, 10) %>
-                                </p>
-                            </div>
-                            <%}%>
-                                <%}%>
-
-                                    <%- include('partials/form.ejs'); -%>
+                        <div class="table-responsive rounded-3">
+                            <table class="table table-hover table-borderless" id="books-added">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Book title</th>
+                                        <th scope="col">Author</th>
+                                        <th scope="col">Your rating</th>
+                                        <th scope="col">Your thoughts</th>
+                                        <th scope="col">Date finished</th>
+                                        <th scope="col">Edit entry</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider">
+                                    <% for (let book of listOfBooks) { %>
+                                        <tr>
+                                            <th scope="row">
+                                                <%= book.id %>
+                                            </th>
+                                            <td>
+                                                <%= book.title %>
+                                            </td>
+                                            <td>
+                                                <%= book.author %>
+                                            </td>
+                                            <td>
+                                                <%= book.rating %>
+                                            </td>
+                                            <td>
+                                                <%= book.notes %>
+                                            </td>
+                                            <td>
+                                                <%= new Date(book.date_read).toISOString().slice(0, 10) %>
+                                            </td>
+                                            <td>
+                                                ✏️
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <% } %>
         </div>
-
+        <%- include('partials/form.ejs'); -%>
     </div>
 
     <%- include('partials/footer.ejs'); -%>
