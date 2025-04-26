@@ -55,7 +55,25 @@ app.get("/", async (req, res) => {
 });
 
 // create
-app.post("/add", async (req, res) => {});
+app.post("/add", async (req, res) => {
+  const title = req.body.title;
+  const rating = req.body.rating;
+  const notes = req.body.notes;
+  const author = req.body.author;
+  const date_read = req.body.date_read;
+
+  try {
+    await db.query(
+      "INSERT INTO books (title, rating, notes, author, date_read) VALUES ($1, $2, $3, $4, $5)",
+      [title, rating, notes, author, date_read]
+    );
+    res.redirect("/");
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Error adding item");
+    return;
+  }
+});
 
 // update
 app.post("/edit", async (req, res) => {});
