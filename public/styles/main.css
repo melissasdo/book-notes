@@ -7,6 +7,10 @@ h1 {
   font-size: 30px !important;
 }
 
+/*th {
+  text-align: left !important;
+}*/
+
 /* classes */
 .date-read {
   border-style: none;
@@ -15,11 +19,21 @@ h1 {
   font-weight: 300;
 }
 
-.table {
-  background-color: #e4ffe9 !important;
+.edit-btn {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  visibility: hidden;
 }
 
-.table th,
+.edit-wrapper:hover .edit-btn {
+  opacity: 1;
+  visibility: visible;
+}
+
+.table th {
+  background-color: #c9eed0 !important;
+}
+
 .table td {
   background-color: #e4ffe9 !important;
 }

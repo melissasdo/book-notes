@@ -35,17 +35,16 @@
                                         <th scope="col">Delete entry</th>
                                     </tr>
                                 </thead>
-                                <tbody class="table-group-divider">
+                                <tbody class="table-group-divider align-middle">
                                     <% for (let book of listOfBooks) { %>
                                         <tr>
                                             <th scope="row">
                                                 <%= book.id %>
                                             </th>
-                                            <td onmouseover="showEditButton('<%=book.id%>', 'Title')"
-                                                onmouseout="hideEditButton('<%=book.id%>', 'Title')">
+                                            <td class="position-relative text-center">
                                                 <div>
-                                                    <form class="justify-content-center d-flex gap-4" action="/edit"
-                                                        method="post">
+                                                    <form class="edit-wrapper justify-content-center d-flex gap-4"
+                                                        action="/edit" method="post">
                                                         <p id="title<%= book.id %>" class="mb-0">
                                                             <%= book.title %>
                                                         </p>
@@ -54,8 +53,9 @@
                                                         <input class="form-control" id="inputTitle<%= book.id %>"
                                                             type="text" name="updatedBookTitle"
                                                             value="<%= book.title %>" hidden="true" />
-                                                        <button id="editTitle<%= book.id %>" class="btn btn-sm p-0"
-                                                            type="button" hidden
+                                                        <button id="editTitle<%= book.id %>"
+                                                            class="btn btn-sm p-0 edit-btn position-absolute end-0 top-50 translate-middle-y"
+                                                            type="button"
                                                             onclick="handler('<%=book.id%>', 'Title')">✏️</button>
                                                         <button id="doneTitle<%= book.id %>" class="btn btn-sm p-0"
                                                             type="submit" hidden>✅</button>
@@ -65,11 +65,10 @@
                                                     </form>
                                                 </div>
                                             </td>
-                                            <td onmouseover="showEditButton('<%=book.id%>', 'Author')"
-                                                onmouseout="hideEditButton('<%=book.id%>', 'Author')">
+                                            <td class="position-relative text-center">
                                                 <div>
-                                                    <form class="d-flex gap-4 justify-content-center" action="/edit"
-                                                        method="post">
+                                                    <form class="edit-wrapper d-flex gap-4 justify-content-center"
+                                                        action="/edit" method="post">
                                                         <p id="author<%= book.id %>" class="mb-0">
                                                             <%= book.author %>
                                                         </p>
@@ -78,8 +77,9 @@
                                                         <input class="form-control" id="inputAuthor<%= book.id %>"
                                                             type="text" name="updatedBookAuthor"
                                                             value="<%= book.author %>" hidden="true" />
-                                                        <button id="editAuthor<%= book.id %>" class="btn btn-sm p-0"
-                                                            type="button" hidden
+                                                        <button id="editAuthor<%= book.id %>"
+                                                            class="btn btn-sm p-0 edit-btn position-absolute end-0 top-50 translate-middle-y"
+                                                            type="button"
                                                             onclick="handler('<%=book.id%>', 'Author')">✏️</button>
                                                         <button id="doneAuthor<%= book.id %>" class="btn btn-sm p-0"
                                                             type="submit" hidden>✅</button>
@@ -89,11 +89,10 @@
                                                     </form>
                                                 </div>
                                             </td>
-                                            <td onmouseover="showEditButton('<%=book.id%>', 'Rating')"
-                                                onmouseout="hideEditButton('<%=book.id%>', 'Rating')">
+                                            <td class="position-relative text-center">
                                                 <div>
-                                                    <form class="d-flex gap-4 justify-content-center" action="/edit"
-                                                        method="post">
+                                                    <form class="edit-wrapper d-flex gap-4 justify-content-center"
+                                                        action="/edit" method="post">
                                                         <p id="rating<%= book.id %>" class="mb-0">
                                                             <%= book.rating %>
                                                         </p>
@@ -102,8 +101,9 @@
                                                         <input class="form-control" id="inputRating<%= book.id %>"
                                                             type="text" name="updatedBookRating"
                                                             value="<%= book.rating %>" hidden="true" />
-                                                        <button id="editRating<%= book.id %>" class="btn btn-sm p-0"
-                                                            type="button" hidden
+                                                        <button id="editRating<%= book.id %>"
+                                                            class="btn btn-sm p-0 edit-btn position-absolute end-0 top-50 translate-middle-y"
+                                                            type="button"
                                                             onclick="handler('<%=book.id%>', 'Rating')">✏️</button>
                                                         <button id="doneRating<%= book.id %>" class="btn btn-sm p-0"
                                                             type="submit" hidden>✅</button>
@@ -113,11 +113,10 @@
                                                     </form>
                                                 </div>
                                             </td>
-                                            <td onmouseover="showEditButton('<%=book.id%>', 'Notes')"
-                                                onmouseout="hideEditButton('<%=book.id%>', 'Notes')">
+                                            <td class="position-relative text-center">
                                                 <div>
-                                                    <form class="d-flex gap-4 justify-content-center" action="/edit"
-                                                        method="post">
+                                                    <form class="edit-wrapper d-flex gap-4 justify-content-center"
+                                                        action="/edit" method="post">
                                                         <p id="notes<%= book.id %>" class="mb-0">
                                                             <%= book.notes %>
                                                         </p>
@@ -126,8 +125,9 @@
                                                         <input class="form-control" id="inputNotes<%= book.id %>"
                                                             type="text" name="updatedBookNotes"
                                                             value="<%= book.notes %>" hidden="true" />
-                                                        <button id="editNotes<%= book.id %>" class="btn btn-sm p-0"
-                                                            type="button" hidden
+                                                        <button id="editNotes<%= book.id %>"
+                                                            class="btn btn-sm p-0 edit-btn position-absolute end-0 top-50 translate-middle-y"
+                                                            type="button"
                                                             onclick="handler('<%=book.id%>', 'Notes')">✏️</button>
                                                         <button id="doneNotes<%= book.id %>" class="btn btn-sm p-0"
                                                             type="submit" hidden>✅</button>
@@ -137,11 +137,10 @@
                                                     </form>
                                                 </div>
                                             </td>
-                                            <td onmouseover="showEditButton('<%=book.id%>', 'date_read')"
-                                                onmouseout="hideEditButton('<%=book.id%>', 'date_read')">
+                                            <td class="position-relative text-center">
                                                 <div>
-                                                    <form class="d-flex gap-4 justify-content-center" action="/edit"
-                                                        method="post">
+                                                    <form class="edit-wrapper d-flex gap-4 justify-content-center"
+                                                        action="/edit" method="post">
                                                         <p id="date_read<%= book.id %>" class="mb-0">
                                                             <%= new Date(book.date_read).toISOString().slice(0, 10) %>
                                                         </p>
@@ -151,8 +150,9 @@
                                                             type="text" name="updatedBookdate_read"
                                                             value="<%= new Date(book.date_read).toISOString().slice(0, 10) %>"
                                                             hidden="true" />
-                                                        <button id="editdate_read<%= book.id %>" class="btn btn-sm p-0"
-                                                            type="button" hidden
+                                                        <button id="editdate_read<%= book.id %>"
+                                                            class="btn btn-sm p-0 edit-btn position-absolute end-0 top-50 translate-middle-y"
+                                                            type="button"
                                                             onclick="handler('<%=book.id%>', 'date_read')">✏️</button>
                                                         <button id="donedate_read<%= book.id %>" class="btn btn-sm p-0"
                                                             type="submit" hidden>✅</button>
