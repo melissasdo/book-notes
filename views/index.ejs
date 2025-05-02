@@ -32,6 +32,7 @@
                                         <th scope="col">Your rating</th>
                                         <th scope="col">Your thoughts</th>
                                         <th scope="col">Date finished</th>
+                                        <th scope="col">Delete entry</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-group-divider">
@@ -161,6 +162,12 @@
                                                             hidden>❌</button>
                                                     </form>
                                                 </div>
+                                            </td>
+                                            <td>
+                                                <form action="/delete" method="post">
+                                                    <button type="checkbox" class="btn btn-sm p-0" name="deleteBookId"
+                                                        value="<%= book.id %>">🗑️</button>
+                                                </form>
                                             </td>
                                         </tr>
                                         <% } %>
