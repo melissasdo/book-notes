@@ -2,32 +2,35 @@
 <footer class="container-fluid text-center fixed-bottom p-3 text-bg-success">Copyright © <%= new Date().getFullYear() %>
 </footer>
 <script>
-    function handler(id) {
-        document.getElementById("title" + id).setAttribute("hidden", true);
-        document.getElementById("edit" + id).setAttribute("hidden", true);
-        document.getElementById("done" + id).removeAttribute("hidden");
-        document.getElementById("cancel" + id).removeAttribute("hidden");
-        document.getElementById("input" + id).removeAttribute("hidden");
+    function handler(id, field) {
+        fieldLowerCase = field.toLowerCase()
+        document.getElementById(fieldLowerCase + id).setAttribute("hidden", true);
+        document.getElementById("edit" + field + id).setAttribute("hidden", true);
+        document.getElementById("done" + field + id).removeAttribute("hidden");
+        document.getElementById("cancel" + field + id).removeAttribute("hidden");
+        document.getElementById("input" + field + id).removeAttribute("hidden");
     }
 
-    function cancelEdit(id) {
-        document.getElementById("title" + id).removeAttribute("hidden");
-        document.getElementById("edit" + id).removeAttribute("hidden");
-        document.getElementById("done" + id).setAttribute("hidden", true);
-        document.getElementById("cancel" + id).setAttribute("hidden", true);
-        document.getElementById("input" + id).setAttribute("hidden", true);
+    function cancelEdit(id, field) {
+        fieldLowerCase = field.toLowerCase()
+        document.getElementById(fieldLowerCase + id).removeAttribute("hidden");
+        document.getElementById("edit" + field + id).removeAttribute("hidden");
+        document.getElementById("done" + field + id).setAttribute("hidden", true);
+        document.getElementById("cancel" + field + id).setAttribute("hidden", true);
+        document.getElementById("input" + field + id).setAttribute("hidden", true);
     }
 
-    function showEditButton(id) {
-        const doneButton = document.getElementById("done" + id);
-        if (doneButton.hasAttribute("hidden")) {
-            document.getElementById("edit" + id).removeAttribute("hidden");
+    function showEditButton(id, field) {
+        const done = document.getElementById("done" + field + id);
+        if (done && done.hasAttribute("hidden")) {
+            document.getElementById("edit" + field + id).removeAttribute("hidden");
         }
     }
 
-    function hideEditButton(id) {
-        document.getElementById("edit" + id).setAttribute("hidden", true);
+    function hideEditButton(id, field) {
+        document.getElementById("edit" + field + id).setAttribute("hidden", true);
     }
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

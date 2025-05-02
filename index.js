@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
 import { time } from "console";
+import { isNull } from "util";
 
 const app = express();
 const port = 3000;
@@ -78,19 +79,56 @@ app.post("/add", async (req, res) => {
 // update
 app.post("/edit", async (req, res) => {
   const id = req.body.updatedBookId;
-  const updatedBookTitle = req.body.updatedBookTitle;
+  let updatedBookTitle = req.body.updatedBookTitle;
+  let updatedBookAuthor = req.body.updatedBookAuthor;
+  let updatedBookRating = req.body.updatedBookRating;
+  let updatedBookNotes = req.body.updatedBookNotes;
+  let updatedBookDateRead = req.body.updatedBookdate_read;
 
   try {
-    await db.query("UPDATE books SET title = $1 WHERE id = $2", [
-      updatedBookTitle,
-      id,
-    ]);
+    const result = await db.query(
+      "SELECT title, author, rating, notes, date_read FROM books WHERE id = $1",
+      [id]
+    );
+    const book = result.rows[0];
+
+    if (!updatedBookTitle) {
+      updatedBookTitle = book.title;
+    }
+
+    if (!updatedBookAuthor) {
+      updatedBookAuthor = book.author;
+    }
+
+    if (!updatedBookRating) {
+      updatedBookRating = book.rating;
+    }
+
+    if (!updatedBookNotes) {
+      updatedBookNotes = book.notes;
+    }
+
+    if (!updatedBookDateRead) {
+      updatedBookDateRead = book.date_read;
+    }
+
+    await db.query(
+      "UPDATE books SET title = $1, author = $2, rating = $3, notes = $4, date_read = $5 WHERE id = $6",
+      [
+        updatedBookTitle,
+        updatedBookAuthor,
+        updatedBookRating,
+        updatedBookNotes,
+        updatedBookDateRead,
+        id,
+      ]
+    );
+
+    res.redirect("/");
   } catch (err) {
     console.log(err);
-    res.status(500).send("Error editing item");
+    return res.status(500).send("Error editing item");
   }
-
-  res.redirect("/");
 });
 
 // delete
