@@ -1,7 +1,10 @@
 </main>
 <footer class="container-fluid text-center fixed-bottom p-3 text-bg-success">Copyright © <%= new Date().getFullYear() %>
 </footer>
+
 <script>
+    new Tablesort(document.getElementById('books-added'));
+
     function handler(id, field) {
         fieldLowerCase = field.toLowerCase()
         document.getElementById(fieldLowerCase + id).setAttribute("hidden", true);
