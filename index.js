@@ -79,54 +79,39 @@ app.post("/add", async (req, res) => {
 // update
 app.post("/edit", async (req, res) => {
   const id = req.body.updatedBookId;
-  let updatedBookTitle = req.body.updatedBookTitle;
-  let updatedBookAuthor = req.body.updatedBookAuthor;
-  let updatedBookRating = req.body.updatedBookRating;
-  let updatedBookNotes = req.body.updatedBookNotes;
-  let updatedBookDateRead = req.body.updatedBookdate_read;
+  const fields = {
+    title: req.body.updatedBookTitle,
+    author: req.body.updatedBookAuthor,
+    rating: req.body.updatedBookRating,
+    notes: req.body.updatedBookNotes,
+    date_read: req.body.updatedBookdate_read,
+  };
 
   try {
-    const result = await db.query(
-      "SELECT title, author, rating, notes, date_read FROM books WHERE id = $1",
-      [id]
+    // Filter only fields that are not null/undefined
+    const keysToUpdate = Object.keys(fields).filter(
+      (key) => fields[key] !== undefined && fields[key] !== ""
     );
-    const book = result.rows[0];
 
-    if (!updatedBookTitle) {
-      updatedBookTitle = book.title;
+    if (keysToUpdate.length === 0) {
+      return res.redirect("/"); // nothing to update
     }
 
-    if (!updatedBookAuthor) {
-      updatedBookAuthor = book.author;
-    }
+    // Build SET clause dynamically
+    const setClause = keysToUpdate
+      .map((key, index) => `${key} = $${index + 1}`)
+      .join(", ");
+    const values = keysToUpdate.map((key) => fields[key]);
 
-    if (!updatedBookRating) {
-      updatedBookRating = book.rating;
-    }
+    // Add id at the end for the WHERE clause
+    values.push(id);
 
-    if (!updatedBookNotes) {
-      updatedBookNotes = book.notes;
-    }
-
-    if (!updatedBookDateRead) {
-      updatedBookDateRead = book.date_read;
-    }
-
-    await db.query(
-      "UPDATE books SET title = $1, author = $2, rating = $3, notes = $4, date_read = $5 WHERE id = $6",
-      [
-        updatedBookTitle,
-        updatedBookAuthor,
-        updatedBookRating,
-        updatedBookNotes,
-        updatedBookDateRead,
-        id,
-      ]
-    );
+    const query = `UPDATE books SET ${setClause} WHERE id = $${values.length}`;
+    await db.query(query, values);
 
     res.redirect("/");
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return res.status(500).send("Error editing item");
   }
 });
