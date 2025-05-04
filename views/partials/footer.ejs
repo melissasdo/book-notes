@@ -3,8 +3,9 @@
 </footer>
 
 <script>
-    new Tablesort(document.getElementById('books-added'));
+    new Tablesort(document.getElementById('books-added')); // Initialize tablesort on the books-added table
 
+    // Function to handle the edit button click event. It shows the input field and hides the pencil, showing the other buttons the user can choose from (update and cancel).
     function handler(id, field) {
         fieldLowerCase = field.toLowerCase()
         document.getElementById(fieldLowerCase + id).setAttribute("hidden", true);
@@ -14,6 +15,7 @@
         document.getElementById("input" + field + id).removeAttribute("hidden");
     }
 
+    // Function to handle the cancel button click event. It hides the input field and shows the pencil, as well as the previous data that hasn't been altered.
     function cancelEdit(id, field) {
         fieldLowerCase = field.toLowerCase()
         document.getElementById(fieldLowerCase + id).removeAttribute("hidden");
@@ -22,18 +24,6 @@
         document.getElementById("cancel" + field + id).setAttribute("hidden", true);
         document.getElementById("input" + field + id).setAttribute("hidden", true);
     }
-
-    function showEditButton(id, field) {
-        const done = document.getElementById("done" + field + id);
-        if (done && done.hasAttribute("hidden")) {
-            document.getElementById("edit" + field + id).removeAttribute("hidden");
-        }
-    }
-
-    function hideEditButton(id, field) {
-        document.getElementById("edit" + field + id).setAttribute("hidden", true);
-    }
-
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

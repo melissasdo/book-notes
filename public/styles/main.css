@@ -16,6 +16,7 @@ h1 {
 }
 
 .edit-btn {
+  /* This creates the pencil 'fade in/fade out' effect */
   opacity: 0;
   transition: opacity 0.2s ease;
   visibility: hidden;

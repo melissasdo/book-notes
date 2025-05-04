@@ -3,7 +3,7 @@
     <nav class="navbar text-bg-success p-4">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="/assets/images/readlog.png" alt="Readlog logo" width="80" height="80"
+                <img src="/assets/images/readlog.png" alt="Readlog logo" width="80" height="60"
                     class="d-inline-block align-text-top">
             </a>
         </div>
@@ -24,11 +24,13 @@
                         alt="John Travolta Pulp Fiction meme">
                 </div>
                 <%- include('partials/form.ejs'); -%>
+                    <!-- Form to add a new book added to a partial to prevent clobbering of this page -->
                     <% } else { %>
                         <div class="table-responsive rounded-3">
                             <table class="table table-hover table-borderless" id="books-added">
                                 <thead>
                                     <tr class="align-middle">
+                                        <!-- Add cursor: pointer to turn sorting user friendlier -->
                                         <th scope="col" style="cursor: pointer;">Book ID</th>
                                         <th scope="col" style="cursor: pointer;">Book title</th>
                                         <th scope="col" style="cursor: pointer;">Author</th>
@@ -47,6 +49,7 @@
                                             </th>
                                             <td class="position-relative text-center">
                                                 <div>
+                                                    <!-- Form to edit book specifics. All of them follow the same basic principles: the edit button appears on hovering; when it's clicked, both the 'x' and the check appear so the user can choose to edit the field and save the update or cancel altogether -->
                                                     <form class="edit-wrapper justify-content-center d-flex gap-4"
                                                         action="/edit" method="post">
                                                         <p id="title<%= book.id %>" class="mb-0">
@@ -168,6 +171,7 @@
                                                 </div>
                                             </td>
                                             <td>
+                                                <!-- Form to delete book entry. The button is a checkbox so it can be styled as a button and not a form submit button. The form action is set to /delete, which is handled in the server-side code. The value of the checkbox is set to the book ID, which is used to identify the book to be deleted. -->
                                                 <form action="/delete" method="post">
                                                     <button type="checkbox" class="btn btn-sm p-0" name="deleteBookId"
                                                         value="<%= book.id %>">🗑️</button>
