@@ -27,6 +27,10 @@ h1 {
   visibility: visible;
 }
 
+.error-code {
+  font-size: 100px !important;
+}
+
 .table th {
   background-color: #c9eed0 !important;
 }

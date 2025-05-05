@@ -78,8 +78,12 @@ app.post("/add", async (req, res) => {
     res.redirect("/");
   } catch (err) {
     // If there is an error, log it to the console and send a 500 status code with an error message
-    console.log(err);
-    res.status(500).send("Error adding item");
+    console.log("Check if you have all the fields filled in the form");
+    let statusCode = 500;
+    res.render("error.ejs", {
+      statusCode: statusCode,
+      errorMessage: "Error adding item",
+    });
     return;
   }
 });
@@ -120,8 +124,13 @@ app.post("/edit", async (req, res) => {
 
     res.redirect("/");
   } catch (err) {
-    console.error(err);
-    return res.status(500).send("Error editing item");
+    console.log(err);
+    let statusCode = 500;
+    res.render("error.ejs", {
+      statusCode: statusCode,
+      errorMessage: "Error updating item",
+    });
+    return;
   }
 });
 
@@ -135,7 +144,12 @@ app.post("/delete", async (req, res) => {
     res.redirect("/");
   } catch (err) {
     console.log(err);
-    res.send("Error deleting item");
+    let statusCode = 500;
+    res.render("error.ejs", {
+      statusCode: statusCode,
+      errorMessage: "Error deleting item",
+    });
+    return;
   }
 });
 

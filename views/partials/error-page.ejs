@@ -1,0 +1,17 @@
+<!-- Script to handle countdown and redirect-->
+<script>
+    window.onload = function () {
+        let seconds = 5; // Set the countdown time in seconds
+        const countdownEl = document.getElementById('countdown');
+
+        const interval = setInterval(function () {
+            seconds--;
+            countdownEl.textContent = seconds;
+
+            if (seconds <= 0) {
+                clearInterval(interval);
+                window.location.href = '/';
+            }
+        }, 1000); // updates every second
+    };
+</script>

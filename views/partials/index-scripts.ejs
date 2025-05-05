@@ -1,0 +1,23 @@
+<script>
+    new Tablesort(document.getElementById('books-added')); // Initialize tablesort on the books-added table
+
+    // Function to handle the edit button click event. It shows the input field and hides the pencil, showing the other buttons the user can choose from (update and cancel).
+    function handler(id, field) {
+        fieldLowerCase = field.toLowerCase()
+        document.getElementById(fieldLowerCase + id).setAttribute("hidden", true);
+        document.getElementById("edit" + field + id).setAttribute("hidden", true);
+        document.getElementById("done" + field + id).removeAttribute("hidden");
+        document.getElementById("cancel" + field + id).removeAttribute("hidden");
+        document.getElementById("input" + field + id).removeAttribute("hidden");
+    }
+
+    // Function to handle the cancel button click event. It hides the input field and shows the pencil, as well as the previous data that hasn't been altered.
+    function cancelEdit(id, field) {
+        fieldLowerCase = field.toLowerCase()
+        document.getElementById(fieldLowerCase + id).removeAttribute("hidden");
+        document.getElementById("edit" + field + id).removeAttribute("hidden");
+        document.getElementById("done" + field + id).setAttribute("hidden", true);
+        document.getElementById("cancel" + field + id).setAttribute("hidden", true);
+        document.getElementById("input" + field + id).setAttribute("hidden", true);
+    }
+</script>

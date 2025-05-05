@@ -1,0 +1,21 @@
+<%- include('partials/header.ejs'); -%>
+
+    <div class="container-fluid text-center">
+        <h1 class="header p-4 error-code">
+            <%= statusCode %>
+        </h1>
+        <div>
+            <div class="jt-gif p-4">
+                <p class="text-muted fst-italic">
+                    <%= errorMessage %>. Please try again later.
+                </p>
+                <img src="/assets/images/c3po-here-we-go-again.gif" class="rounded-4 p-2"
+                    alt="C-3PO here we go again gif">
+            </div>
+        </div>
+        <h3 class="text-muted p-3">Redirecting in <span id="countdown">5</span> seconds...</h3>
+
+    </div>
+
+    <%- include('partials/error-page.ejs'); -%>
+        <%- include('partials/footer.ejs'); -%>

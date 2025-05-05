@@ -1,14 +1,5 @@
 <%- include('partials/header.ejs'); -%>
 
-    <nav class="navbar text-bg-success p-4">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="/assets/images/readlog.png" alt="Readlog logo" width="80" height="60"
-                    class="d-inline-block align-text-top">
-            </a>
-        </div>
-    </nav>
-
     <div class="container-fluid text-center">
         <div class="header p-4">
             <h1>Good <%= timeOfDay %>
@@ -129,9 +120,8 @@
                                                         </p>
                                                         <input class="form-control" type="hidden" name="updatedBookId"
                                                             value="<%= book.id %>">
-                                                        <input class="form-control" id="inputNotes<%= book.id %>"
-                                                            type="text" name="updatedBookNotes"
-                                                            value="<%= book.notes %>" hidden="true" />
+                                                        <textarea class="form-control" id="inputNotes<%= book.id %>"
+                                                            name="updatedBookNotes" hidden><%= book.notes %></textarea>
                                                         <button id="editNotes<%= book.id %>"
                                                             class="btn btn-sm p-0 edit-btn position-absolute end-0 top-50 translate-middle-y"
                                                             type="button"
