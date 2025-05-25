@@ -95,7 +95,7 @@ Book Notes/
 
 - Update styles in main.css.
 - Modify views in the views folder.
-- Extend backend logic in `app.js`.
+- Extend backend logic in `index.js`.
 
 ---
 
