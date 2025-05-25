@@ -1,22 +1,20 @@
-/*@media (max-width: 767px) {
-  .table-responsive {
-    margin-bottom: 80px; /* Leave space for fixed button */
-
-/* tags */
+/* Set background color for the whole page */
 body {
   background-color: rgba(127, 255, 212, 0.431);
 }
 
+/* Attempt to override modal behavior on mobile (may cause issues with Bootstrap modals) */
 body.modal-open-mobile #add-book-form {
   position: static !important;
   z-index: auto !important;
 }
 
+/* Style for main headings */
 h1 {
   font-size: 30px !important;
 }
 
-/* classes */
+/* Style for date input fields */
 .date-read {
   border-style: none;
   font-family: "Noto Sans", sans-serif;
@@ -24,43 +22,50 @@ h1 {
   font-weight: 300;
 }
 
+/* Center flex items horizontally */
 .flex-wrap {
   justify-content: center !important;
 }
 
+/* Hide edit button by default, fade in on hover */
 .edit-btn {
-  /* This creates the pencil 'fade in/fade out' effect */
   opacity: 0;
   transition: opacity 0.2s ease;
   visibility: hidden;
 }
 
+/* Show edit button when hovering over its wrapper */
 .edit-wrapper:hover .edit-btn {
   opacity: 1;
   visibility: visible;
 }
 
+/* Large font size for error codes */
 .error-code {
   font-size: 100px !important;
 }
 
+/* Table header background color */
 .table th {
   background-color: #c9eed0 !important;
 }
 
+/* Table cell background color */
 .table td {
   background-color: #e4ffe9 !important;
 }
 
-/* ids */
+/* Add margin below the add-book-form */
 #add-book-form {
   margin-bottom: 2rem !important;
 }
 
+/* Set z-index for sticky add-book-form */
 #add-book-form.sticky-bottom {
   z-index: 1020;
 }
 
+/* Set z-index for Bootstrap modal */
 .modal {
   z-index: 1055;
 }

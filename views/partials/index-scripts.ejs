@@ -1,7 +1,9 @@
 <script>
-    new Tablesort(document.getElementById('books-added')); // Initialize tablesort on the books-added table
+    // Initialize tablesort on the books-added table
+    new Tablesort(document.getElementById('books-added'));
 
-    // Function to handle the edit button click event. It shows the input field and hides the pencil, showing the other buttons the user can choose from (update and cancel).
+    // Function to handle the edit button click event.
+    // Hides the field and pencil icon, shows input and action buttons (update/cancel)
     function handler(id, field) {
         fieldLowerCase = field.toLowerCase()
         document.getElementById(fieldLowerCase + id).setAttribute("hidden", true);
@@ -11,7 +13,8 @@
         document.getElementById("input" + field + id).removeAttribute("hidden");
     }
 
-    // Function to handle the cancel button click event. It hides the input field and shows the pencil, as well as the previous data that hasn't been altered.
+    // Function to handle the cancel button click event.
+    // Restores the field and pencil icon, hides input and action buttons
     function cancelEdit(id, field) {
         fieldLowerCase = field.toLowerCase()
         document.getElementById(fieldLowerCase + id).removeAttribute("hidden");
@@ -23,16 +26,18 @@
 </script>
 
 <script>
+    // Function to check window width and adjust UI for mobile/desktop
     function checkWidth() {
         const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
         const addBookForm = document.getElementById("add-book-form");
         const footer = document.getElementById("footer");
 
         if (vw < 768) {
-            // Apply Bootstrap fixed bottom on small screens
+            // On small screens, make add-book-form sticky at the bottom and hide footer
             addBookForm.classList.add("sticky-bottom");
             footer?.setAttribute("hidden", true);
         } else {
+            // On larger screens, remove sticky and show footer
             addBookForm.classList.remove("sticky-bottom");
             footer?.removeAttribute("hidden");
         }
@@ -40,28 +45,29 @@
 
     const addBookForm = document.getElementById("add-book-form");
 
-    // Remove sticky when modal is open
+    // Remove sticky class when modal is shown
     document.getElementById("add-book").addEventListener("show.bs.modal", () => {
         addBookForm?.classList.remove("sticky-bottom");
     });
 
-    // Restore sticky when modal is closed
+    // Restore sticky class when modal is hidden, if needed
     document.getElementById("add-book").addEventListener("hidden.bs.modal", () => {
         checkWidth(); // reapply sticky if needed based on screen width
     });
 
+    // Add a class to body when modal is open (for mobile-specific CSS)
     document.getElementById("add-book").addEventListener("show.bs.modal", () => {
         document.body.classList.add("modal-open-mobile");
         addBookForm?.classList.remove("sticky-bottom");
     });
 
+    // Remove the class from body when modal is closed
     document.getElementById("add-book").addEventListener("hidden.bs.modal", () => {
         document.body.classList.remove("modal-open-mobile");
         checkWidth(); // reapply sticky if needed
     });
 
-
-
+    // Re-check width on window resize and on page load
     window.addEventListener("resize", checkWidth);
     window.addEventListener("load", checkWidth);
 </script>
