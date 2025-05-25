@@ -1,6 +1,15 @@
+/*@media (max-width: 767px) {
+  .table-responsive {
+    margin-bottom: 80px; /* Leave space for fixed button */
+
 /* tags */
 body {
   background-color: rgba(127, 255, 212, 0.431);
+}
+
+body.modal-open-mobile #add-book-form {
+  position: static !important;
+  z-index: auto !important;
 }
 
 h1 {
@@ -13,6 +22,10 @@ h1 {
   font-family: "Noto Sans", sans-serif;
   font-size: 16px;
   font-weight: 300;
+}
+
+.flex-wrap {
+  justify-content: center !important;
 }
 
 .edit-btn {
@@ -39,4 +52,15 @@ h1 {
   background-color: #e4ffe9 !important;
 }
 
-/* ids*/
+/* ids */
+#add-book-form {
+  margin-bottom: 2rem !important;
+}
+
+#add-book-form.sticky-bottom {
+  z-index: 1020;
+}
+
+.modal {
+  z-index: 1055;
+}

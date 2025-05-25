@@ -21,3 +21,47 @@
         document.getElementById("input" + field + id).setAttribute("hidden", true);
     }
 </script>
+
+<script>
+    function checkWidth() {
+        const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+        const addBookForm = document.getElementById("add-book-form");
+        const footer = document.getElementById("footer");
+
+        if (vw < 768) {
+            // Apply Bootstrap fixed bottom on small screens
+            addBookForm.classList.add("sticky-bottom");
+            footer?.setAttribute("hidden", true);
+        } else {
+            addBookForm.classList.remove("sticky-bottom");
+            footer?.removeAttribute("hidden");
+        }
+    }
+
+    const addBookForm = document.getElementById("add-book-form");
+
+    // Remove sticky when modal is open
+    document.getElementById("add-book").addEventListener("show.bs.modal", () => {
+        addBookForm?.classList.remove("sticky-bottom");
+    });
+
+    // Restore sticky when modal is closed
+    document.getElementById("add-book").addEventListener("hidden.bs.modal", () => {
+        checkWidth(); // reapply sticky if needed based on screen width
+    });
+
+    document.getElementById("add-book").addEventListener("show.bs.modal", () => {
+        document.body.classList.add("modal-open-mobile");
+        addBookForm?.classList.remove("sticky-bottom");
+    });
+
+    document.getElementById("add-book").addEventListener("hidden.bs.modal", () => {
+        document.body.classList.remove("modal-open-mobile");
+        checkWidth(); // reapply sticky if needed
+    });
+
+
+
+    window.addEventListener("resize", checkWidth);
+    window.addEventListener("load", checkWidth);
+</script>
